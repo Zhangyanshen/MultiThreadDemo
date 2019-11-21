@@ -13,6 +13,10 @@
 @property (nonatomic, assign) NSInteger ticketCount;
 @property (nonatomic, strong) dispatch_semaphore_t semaphore;
 
+@property (weak, nonatomic) IBOutlet UIImageView *imgView;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *indicatorView;
+@property (weak, nonatomic) IBOutlet UIButton *downloadBtn;
+
 @end
 
 @implementation ViewController
@@ -53,6 +57,30 @@
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     [self once];
+}
+
+#pragma mark - Event response
+
+- (IBAction)downloadImage:(UIButton *)sender {
+    sender.enabled = NO;
+    [self.indicatorView startAnimating];
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        NSURL *url = [NSURL URLWithString:@"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1574334895868&di=5a171e564bfbca1fa57587f4c8ea0921&imgtype=0&src=http%3A%2F%2Fimg.sccnn.com%2Fbimg%2F326%2F203.jpg"];
+        NSData *imageData = [NSData dataWithContentsOfURL:url];
+        if (imageData) {
+            UIImage *image = [UIImage imageWithData:imageData];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.imgView.image = image;
+                sender.enabled = YES;
+                [self.indicatorView stopAnimating];
+            });
+        } else {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                sender.enabled = YES;
+                [self.indicatorView stopAnimating];
+            });
+        }
+    });
 }
 
 #pragma mark -

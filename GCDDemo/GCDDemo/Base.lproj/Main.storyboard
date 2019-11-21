@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -9,16 +10,50 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sR8-g2-CCa">
+                                <rect key="frame" x="87" y="349" width="240" height="198"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="ewH-lN-C24"/>
+                                    <constraint firstAttribute="height" constant="198" id="xSk-U6-4hU"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vf1-SK-DQc">
+                                <rect key="frame" x="176" y="589" width="62" height="30"/>
+                                <state key="normal" title="下载图片"/>
+                                <connections>
+                                    <action selector="downloadImage:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Lc9-Rz-A54"/>
+                                </connections>
+                            </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="YCA-fr-edN">
+                                <rect key="frame" x="188.5" y="429.5" width="37" height="37"/>
+                                <color key="color" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Vf1-SK-DQc" firstAttribute="centerX" secondItem="sR8-g2-CCa" secondAttribute="centerX" id="0KO-eb-OGy"/>
+                            <constraint firstItem="Vf1-SK-DQc" firstAttribute="top" secondItem="sR8-g2-CCa" secondAttribute="bottom" constant="42" id="3SB-CE-3sx"/>
+                            <constraint firstItem="sR8-g2-CCa" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Ile-Xx-U7m"/>
+                            <constraint firstItem="YCA-fr-edN" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="NCb-gv-AsQ"/>
+                            <constraint firstItem="sR8-g2-CCa" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="UZ1-8m-cY0"/>
+                            <constraint firstItem="YCA-fr-edN" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="tMT-HQ-XuJ"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="downloadBtn" destination="Vf1-SK-DQc" id="4HK-uK-LwZ"/>
+                        <outlet property="imgView" destination="sR8-g2-CCa" id="jWR-Qx-VJx"/>
+                        <outlet property="indicatorView" destination="YCA-fr-edN" id="vlX-gA-dPq"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="137.68115942028987" y="75.669642857142847"/>
         </scene>
     </scenes>
 </document>
